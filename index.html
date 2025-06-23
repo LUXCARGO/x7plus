@@ -20,6 +20,14 @@
       margin-bottom: 10px;
     }
 
+    .top-controls {
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+    }
+
     .container {
       max-width: 400px;
       width: 100%;
@@ -35,13 +43,16 @@
       font-weight: 600;
     }
 
-    select, input[type="date"], button {
+    select, input[type="date"], button, a.btn-group {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 1rem;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
     }
 
     #result {
@@ -80,14 +91,6 @@
     .btn-group:hover {
       opacity: 0.9;
     }
-
-    .top-controls {
-      width: 100%;
-      max-width: 400px;
-      display: flex;
-      justify-content: flex-end;
-      margin-bottom: 10px;
-    }
   </style>
 </head>
 <body>
@@ -110,7 +113,7 @@
 
     <div id="result"></div>
     <button class="btn-copy" onclick="copyResult()">Скопировать</button>
-    <button class="btn-group" onclick="goToGroup()">Перейти в группу</button>
+    <a href="https://t.me/X7CARGO" target="_blank" class="btn-group">Перейти в группу</a>
   </div>
 
   <script>
@@ -150,10 +153,6 @@
       navigator.clipboard.writeText(text).then(() => {
         alert("✅ Текст скопирован в буфер обмена!");
       });
-    }
-
-    function goToGroup() {
-      window.location.href = "tg://resolve?domain=X7CARGO";
     }
   </script>
 </body>
