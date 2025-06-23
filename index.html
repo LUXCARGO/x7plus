@@ -67,7 +67,6 @@
       font-size: 0.95rem;
     }
 
-    .btn-copy,
     .btn-group,
     .btn-save,
     .btn-refresh {
@@ -91,7 +90,6 @@
       background: #0088cc;
     }
 
-    .btn-copy:hover,
     .btn-save:hover,
     .btn-refresh:hover,
     .btn-group:hover {
@@ -118,8 +116,7 @@
     <button class="btn-save" onclick="generateResult()">Сохранить</button>
 
     <div id="result"></div>
-    <button class="btn-copy" onclick="copyResult()">Скопировать</button>
-    <a href="https://t.me/X7CARGO/1430" target="_blank" class="btn-group">Перейти в группу</a>
+    <a href="#" onclick="copyAndGo()" class="btn-group">Перейти в группу</a>
   </div>
 
   <script>
@@ -153,11 +150,14 @@
       resultDiv.textContent = resultText;
     }
 
-    function copyResult() {
+    function copyAndGo() {
       const text = document.getElementById('result').textContent;
-      if (!text.trim()) return;
+      if (!text.trim()) {
+        alert("❗ Сначала заполните форму и нажмите 'Сохранить'");
+        return;
+      }
       navigator.clipboard.writeText(text).then(() => {
-        alert("✅ Текст скопирован в буфер обмена!");
+        window.location.href = "https://t.me/X7CARGO/1430";
       });
     }
   </script>
