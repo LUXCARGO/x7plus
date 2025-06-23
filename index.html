@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>X7 Склад</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+      color: #333;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .container {
+      max-width: 400px;
+      width: 100%;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    select, input[type="date"], button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    #result {
+      margin-top: 20px;
+      white-space: pre-line;
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+    }
+
+    .btn-copy {
+      margin-top: 10px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-save {
+      margin-top: 20px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-copy:hover,
+    .btn-save:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <h1>Склад X7</h1>
+  <div class="container">
+    <label for="date">Выберите дату:</label>
+    <input type="date" id="date" />
+
+    <label for="warehouse">Выберите склад:</label>
+    <select id="warehouse">
+      <option value="Иву">Иву</option>
+      <option value="Урумчи">Урумчи</option>
+    </select>
+
+    <button class="btn-save" onclick="generateResult()">Сохранить</button>
+
+    <div id="result"></div>
+    <button class="btn-copy" onclick="copyResult()">Скопировать</button>
+  </div>
+
+  <script>
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      const day = String(date.getDate()).padStart(2, '0');
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const year = date.getFullYear();
+      return `${day}.${month}.${year}`;
+    }
+
+    function generateResult() {
+      const date = document.getElementById('date').value;
+      const warehouse = document.getElementById('warehouse').value;
+      const resultDiv = document.getElementById('result');
+
+      if (!date) {
+        resultDiv.textContent = '❗ Пожалуйста, выберите дату.';
+        return;
+      }
+
+      const formattedDate = formatDate(date);
+      const resultText = `✅ Борхои то ${formattedDate} ба склади ${warehouse} қабул шуда ба чат-бот дароварда шуд!
+
+✅ Метавонед даромада трек-кодро проверка кунед!
+
+Бот 👉 @X7CARGOBOT
+
+@X7CARGO 🇹🇯`;
+
+      resultDiv.textContent = resultText;
+    }
+
+    function copyResult() {
+      const text = document.getElementById('result').textContent;
+      if (!text.trim()) return;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("✅ Текст скопирован в буфер обмена!");
+      });
+    }
+  </script>
+</body>
+</html>
